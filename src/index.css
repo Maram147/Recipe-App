@@ -1,0 +1,89 @@
+@import "tailwindcss";
+:root {
+  font-family: cursive;
+  line-height: 1.5;
+  font-weight: 600;
+  font-size: 17px;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #f4f2ee;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: black;
+  text-decoration: inherit;
+}
+a:hover {
+  box-shadow: #be7222;
+
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.fontmeal{
+  font-family: pacifico, cursive;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+button {
+  border-color:  gray;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: #7c808a;
+}
+button:hover {
+  box-shadow: 0 10px 20px rgba(62, 62, 62, 0.19), 0 6px 6px rgba(75, 74, 74, 0.23);
+}
+
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+.min-h-screen {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  width: 100%;
+  background-color: #f8f5f0;
+  /* padding: 1rem 0; */
+  text-align: center;
+  margin-left: 0;
+  position: relative;
+  bottom: 0;
+}
+
+@media (min-width: 640px) {
+  footer {
+    margin-left: 256px; /* يخلي الـ footer يبدأ بعد الـ sidebar (64 * 4) */
+    width: calc(100% - 256px);
+  }
+}
