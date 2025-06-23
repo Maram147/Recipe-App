@@ -4,25 +4,24 @@ import axios from 'axios'; // استيراد axios
 import CategorySelect from '../CategorySelect/CategorySelect';
 import './../../styles/base.scss';
 import logo from '../../assets/images/logo-BfNap0Pe.png';
-import { PacmanLoader } from 'react-spinners'; 
+import { PacmanLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 export default function Meals() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [meals, setMeals] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // دالة تغيير الفئة
   const handleCategoryChange = (category) => {
-    setSelectedCategory(category); 
+    setSelectedCategory(category);
   };
 
-  // جلب الفئات
   const getCategories = async () => {
     try {
       setLoading(true);
       const { data } = await axios.get(`https://www.themealdb.com/api/json/v1/1/list.php?c=list`);
-      setCategories(data.meals || []); 
+      setCategories(data.meals || []);
     } catch (error) {
       console.log(error);
     } finally {
@@ -30,45 +29,41 @@ export default function Meals() {
     }
   };
 
-  // جلب الوجبات
   const getMeals = async (category) => {
-  try {
-    setLoading(true);
-    const url =
-      category === "All"
-        ? `https://www.themealdb.com/api/json/v1/1/search.php?s=`
-        : `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
+    try {
+      setLoading(true);
+      const url =
+        category === "All"
+          ? `https://www.themealdb.com/api/json/v1/1/search.php?s=`
+          : `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
 
-    const { data } = await axios.get(url);
-    const mealsList = data.meals || [];
+      const { data } = await axios.get(url);
+      const mealsList = data.meals || [];
 
-    if (category === "All") {
-      setMeals(mealsList); // البيانات كاملة بالفعل
-    } else {
-      // جلب التفاصيل الكاملة لكل وجبة
-      const detailedMeals = await Promise.all(
-        mealsList.map(async (meal) => {
-          const res = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`);
-          return res.data.meals[0]; // وجبة واحدة في الـ array
-        })
-      );
-      setMeals(detailedMeals);
+      if (category === "All") {
+        setMeals(mealsList);
+      } else {
+        const detailedMeals = await Promise.all(
+          mealsList.map(async (meal) => {
+            const res = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`);
+            return res.data.meals[0];
+          })
+        );
+        setMeals(detailedMeals);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.log(error);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
 
 
-  // Effect لجلب الفئات عند التحميل الأول
   useEffect(() => {
     getCategories();
   }, []);
 
-  // Effect لجلب الوجبات عند تغيير الفئة
   useEffect(() => {
     getMeals(selectedCategory);
   }, [selectedCategory]);
@@ -108,15 +103,15 @@ export default function Meals() {
 
   return (
     <div className="p-4">
-      <h1 className="  fontmeal  font-bold bg-gradient-to-r from-orange-400 via-[#ca1023c4] to-[#c90519] bg-clip-text text-transparent">
-  Learn, Cook, Eat Your Food
-</h1>
+      <h1 className="fontmeal font-bold bg-gradient-to-r from-orange-400 via-[#ca1023c4] to-[#c90519] bg-clip-text text-transparent">
+        Learn, Cook, Eat Your Food
+      </h1>
       <CategorySelect onCategoryChange={handleCategoryChange} categories={categories} />
 
       {loading ? (
-       <div className="flex items-center justify-center h-screen">
-            <PacmanLoader color="#ee850d" />
-          </div>
+        <div className="flex items-center justify-center h-screen">
+          <PacmanLoader color="#ee850d" />
+        </div>
       ) : (
         <div className="recipe-container">
           {meals.map((meal) => {
@@ -124,25 +119,33 @@ export default function Meals() {
 
             return (
               <div key={meal.idMeal} className="recipe-card group">
-                <img
+                <LazyLoadImage 
                   className="recipe-card__image"
-                  src={meal.strMealThumb || logo} 
+                  src={meal.strMealThumb || logo}
                   alt={meal.strMeal}
+                  onError={(e) => {
+                    e.target.src = logo;
+                  }}
                 />
                 <div className="recipe-card__content">
                   <h3 className="recipe-card__title">{meal.strMeal.split(' ').slice(0, 2).join(' ')}</h3>
+                  <p className="recipe-card__category " >{meal.strCategory || 'Uncategorized'}</p>
                   <p className="recipe-card__area">
                     {flagCodeValue && (
                       <img
                         src={`https://flagcdn.com/32x24/${flagCodeValue}.png`}
                         alt={`${meal.strArea} flag`}
                         className="inline-block w-6 h-4 mr-2"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.target.src = logo;
+                        }}
                       />
                     )}
-                     {meal.strArea || ''}
+                    {meal.strArea || ''}
                   </p>
                   <Link to={`/mealdetails/${meal.idMeal}`} className="recipe-card__link">
-                  <button className="recipe-card__button">View Recipe</button>
+                    <button className="recipe-card__button">View Recipe</button>
                   </Link>
                 </div>
               </div>

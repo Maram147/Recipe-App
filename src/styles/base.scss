@@ -1,3 +1,5 @@
+//! Home Meals
+
 .recipe-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -60,6 +62,11 @@
     color: #10b981;
     margin: 0 0 10px;
   }
+  &__category {
+    font-size: 1rem;
+    color: #10b981;
+    margin: 0 0 10px;
+  }
 
   &__button {
     background-color: #10b981;
@@ -83,5 +90,41 @@
     .recipe-card__image {
       transform: translateX(-50%) rotate(360deg);
     }
+  }
+}
+
+//! Meal Details Page
+.mealdetails_content {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+
+  .mealdetails_title {
+    font-family: pacifico, cursive;
+    font-size: 48px;
+    font-weight: 600;
+    color: black;
+    text-align: start;
+  }
+  // .recipe-card__image{
+  //   border-radius: 50%;
+  //   width: 300px;
+  // }
+  .mealdetails_toggle{
+    color: #f29724;
+    font-weight: bold;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .mealdetails_ingredient{
+    border-color: #f29724;
+
+  }
+  .mealdetails_subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    color:#f29724 ;
+    margin: 5px 0;
   }
 }

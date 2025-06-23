@@ -24,6 +24,9 @@ a:hover {
   box-shadow: #be7222;
 
 }
+li {
+  list-style: none;
+}
 
 
 body {
@@ -83,7 +86,12 @@ footer {
 
 @media (min-width: 640px) {
   footer {
-    margin-left: 256px; /* يخلي الـ footer يبدأ بعد الـ sidebar (64 * 4) */
+    margin-left: 256px; 
     width: calc(100% - 256px);
   }
+}
+
+select option:checked {
+  background-color: #f29724; /* غيري اللون اللي تفضليه */
+  color: #fff; /* لون النص */
 }
