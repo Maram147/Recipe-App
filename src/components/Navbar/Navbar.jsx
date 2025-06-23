@@ -1,12 +1,9 @@
-import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react';
-import logo from '../../assets/images/logo-BfNap0Pe.png'
+import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Utensils, LandPlot, BookOpenText } from 'lucide-react';
-import { Menu } from 'lucide-react';
-export default function Navbar() {
+import { Utensils, LandPlot, BookOpenText, Menu } from 'lucide-react';
+import logo from '../../assets/images/logo-BfNap0Pe.png';
 
+export default function Navbar() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
   useEffect(() => {
@@ -15,18 +12,24 @@ export default function Navbar() {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
-  return <>
 
-    <div>
-      <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden  focus:outline-none focus:ring-1 focus:ring-gray-200 hover:bg-gray-100 focus:bg-gray-100 border border-gray-300">
+  return (
+    <>
+      <button
+        data-drawer-target="logo-sidebar"
+        data-drawer-toggle="logo-sidebar"
+        aria-controls="logo-sidebar"
+        type="button"
+        className="inline-flex items-center max-w-fit p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden focus:outline-none focus:ring-1 focus:ring-gray-200 hover:bg-gray-100 focus:bg-gray-100 border border-gray-300"
+      >
         <span className="sr-only">Open sidebar</span>
-        <Menu />
+        <Menu aria-hidden="true" />
       </button>
       <aside
         id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-white shadow"
+        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-white shadow-md"
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto">
@@ -38,13 +41,14 @@ export default function Navbar() {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300 transition-colors ${isActive
-                    ? 'text-white bg-[#f29724] '
-                    : 'text-black hover:bg-gray-100'
+                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300 transition-colors ${
+                    isActive
+                      ? 'text-white bg-[#f29724]'
+                      : 'text-black hover:bg-gray-100'
                   }`
                 }
               >
-                <Utensils />
+                <Utensils aria-hidden="true" />
                 <span>Meals</span>
               </NavLink>
             </li>
@@ -52,13 +56,14 @@ export default function Navbar() {
               <NavLink
                 to="/ingredients"
                 className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300  transition-colors ${isActive
-                    ? 'text-white bg-[#f29724]'
-                    : 'text-black hover:bg-gray-100 '
+                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300 transition-colors ${
+                    isActive
+                      ? 'text-white bg-[#f29724]'
+                      : 'text-black hover:bg-gray-100'
                   }`
                 }
               >
-                <BookOpenText />
+                <BookOpenText aria-hidden="true" />
                 <span>Ingredients</span>
               </NavLink>
             </li>
@@ -66,27 +71,21 @@ export default function Navbar() {
               <NavLink
                 to="/area"
                 className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300 transition-colors ${isActive
-                    ? 'text-white bg-[#f29724]'
-                    : 'text-black hover:bg-gray-100 '
+                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300 transition-colors ${
+                    isActive
+                      ? 'text-white bg-[#f29724]'
+                      : 'text-black hover:bg-gray-100'
                   }`
                 }
               >
-                <LandPlot />
+                <LandPlot aria-hidden="true" />
                 <span>Area</span>
               </NavLink>
             </li>
           </ul>
-
+          
         </div>
-
       </aside>
-
-
-
-    </div>
-
-  </>
-
-
+    </>
+  );
 }

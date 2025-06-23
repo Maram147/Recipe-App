@@ -123,7 +123,7 @@ export default function MealDetails() {
           />
           <ul className="flex gap-4 justify-center mt-4">
             <li className="bg-red-600 text-white py-2 px-4 rounded-xl flex items-center gap-2 hover:scale-105 transition duration-300">
-              <Link
+              <a
                 href={meal.strYoutube}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -131,7 +131,8 @@ export default function MealDetails() {
               >
                 <FaYoutube color='white' />
                 <span className='text-white'>YouTube</span>
-              </Link>
+              </a>
+
             </li>
 
             {meal.strSource && (
