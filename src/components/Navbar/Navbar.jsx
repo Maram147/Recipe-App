@@ -4,23 +4,18 @@ import { Utensils, LandPlot, BookOpenText, Menu } from 'lucide-react';
 import logo from '../../assets/images/logo-BfNap0Pe.png';
 
 export default function Navbar() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <>
+     {sidebarOpen && (
+    <div
+      className="fixed inset-0 bg-black/80 bg-opacity-50 z-30 sm:hidden"
+      onClick={() => setSidebarOpen(false)}
+    />
+  )}
       <button
-        data-drawer-target="logo-sidebar"
-        data-drawer-toggle="logo-sidebar"
-        aria-controls="logo-sidebar"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
         type="button"
         className="inline-flex items-center max-w-fit p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden focus:outline-none focus:ring-1 focus:ring-gray-200 hover:bg-gray-100 focus:bg-gray-100 border border-gray-300"
       >
@@ -29,9 +24,11 @@ export default function Navbar() {
       </button>
       <aside
         id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-white shadow-md"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform duration-300 bg-white shadow-md ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          } sm:translate-x-0`}
         aria-label="Sidebar"
       >
+
         <div className="h-full px-3 py-4 overflow-y-auto">
           <Link to="/" className="flex items-center ps-2.5 mb-5">
             <img src={logo} className="w-full" alt="Logo" />
@@ -41,10 +38,9 @@ export default function Navbar() {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300 transition-colors ${
-                    isActive
-                      ? 'text-white bg-[#f29724]'
-                      : 'text-black hover:bg-gray-100'
+                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300 transition-colors ${isActive
+                    ? 'text-white bg-[#f29724]'
+                    : 'text-black hover:bg-gray-100'
                   }`
                 }
               >
@@ -56,10 +52,9 @@ export default function Navbar() {
               <NavLink
                 to="/ingredients"
                 className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300 transition-colors ${
-                    isActive
-                      ? 'text-white bg-[#f29724]'
-                      : 'text-black hover:bg-gray-100'
+                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300 transition-colors ${isActive
+                    ? 'text-white bg-[#f29724]'
+                    : 'text-black hover:bg-gray-100'
                   }`
                 }
               >
@@ -71,10 +66,9 @@ export default function Navbar() {
               <NavLink
                 to="/area"
                 className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300 transition-colors ${
-                    isActive
-                      ? 'text-white bg-[#f29724]'
-                      : 'text-black hover:bg-gray-100'
+                  `flex items-center p-2 rounded-lg gap-3 border border-gray-300 transition-colors ${isActive
+                    ? 'text-white bg-[#f29724]'
+                    : 'text-black hover:bg-gray-100'
                   }`
                 }
               >
@@ -83,7 +77,7 @@ export default function Navbar() {
               </NavLink>
             </li>
           </ul>
-          
+
         </div>
       </aside>
     </>
