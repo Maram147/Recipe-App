@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../assets/images/logo-BfNap0Pe.png'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 export default function Footer() {
 
 
@@ -9,7 +10,7 @@ export default function Footer() {
 
       <div className="bg-white text-black text-sm flex justify-between py-1 px-6 items-center w-full ">
         <div className='flex items-center gap-2 px-4 '>
-          <img src={logo} alt="logo" className='h-8' />
+          <LazyLoadImage src={logo} alt="logo" className='h-8' />
           <span className=" text-2xl font-semibold text-black ">Recipe</span>
         </div>
 

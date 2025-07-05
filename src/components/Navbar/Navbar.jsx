@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Utensils, LandPlot, BookOpenText, Menu } from 'lucide-react';
 import logo from '../../assets/images/logo-BfNap0Pe.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -31,7 +32,7 @@ export default function Navbar() {
 
         <div className="h-full px-3 py-4 overflow-y-auto">
           <Link to="/" className="flex items-center ps-2.5 mb-5">
-            <img src={logo} className="w-full" alt="Logo" />
+            <LazyLoadImage src={logo} className="w-full" alt="Logo" />
           </Link>
           <ul className="space-y-2 font-medium">
             <li>

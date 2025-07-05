@@ -7,6 +7,7 @@ import logo from '../../assets/images/logo-BfNap0Pe.png';
 import { PacmanLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Helmet } from 'react-helmet';
 export default function Meals() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -103,6 +104,12 @@ export default function Meals() {
 
   return (
     <div className="p-4">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Meals - Discover Delicious Recipes</title>
+        <meta name="description" content="Explore a variety of meals from different categories. Find your favorite recipes and learn how to cook them." />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <h1 className="fontmeal font-bold bg-gradient-to-r from-orange-400 via-[#ca1023c4] to-[#c90519] bg-clip-text text-transparent">
         Learn, Cook, Eat Your Food
       </h1>
@@ -132,7 +139,7 @@ export default function Meals() {
                   <p className="recipe-card__category " >{meal.strCategory || 'Uncategorized'}</p>
                   <p className="recipe-card__area">
                     {flagCodeValue && (
-                      <img
+                      <LazyLoadImage
                         src={`https://flagcdn.com/32x24/${flagCodeValue}.png`}
                         alt={`${meal.strArea} flag`}
                         className="inline-block w-6 h-4 mr-2"

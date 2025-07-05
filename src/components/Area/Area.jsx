@@ -7,6 +7,7 @@ import { PacmanLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import AreaSelect from '../AreaSelect/AreaSelect';
+import { Helmet } from 'react-helmet';
 export default function Area() {
   const [countries, setcountries] = useState([]);
   const [selectedcountries, setSelectedcountries] = useState("All");
@@ -102,6 +103,11 @@ export default function Area() {
 
   return (
     <div className="p-4">
+      <Helmet>
+        <title>Recipe App - Area</title>
+        <meta name="description" content="Explore a variety of recipes based on different countries. Discover new meals and enjoy cooking!" />
+        <meta name="keywords" content="recipes, area, cooking, meal ideas, food" />
+      </Helmet>
       <h1 className="fontmeal font-bold bg-gradient-to-r from-orange-400 via-[#ca1023c4] to-[#c90519] bg-clip-text text-transparent">
         Learn, Cook, Eat Your Food
       </h1>
@@ -130,7 +136,7 @@ export default function Area() {
                   <h3 className="recipe-card__title">{meal.strMeal.split(' ').slice(0, 2).join(' ')}</h3>
                   <p className="recipe-card__area">
                     {flagCodeValue && (
-                      <img
+                      <LazyLoadImage
                         src={`https://flagcdn.com/32x24/${flagCodeValue}.png`}
                         alt={`${meal.strArea} flag`}
                         className="inline-block w-6 h-4 mr-2"
