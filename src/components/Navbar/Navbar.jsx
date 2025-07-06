@@ -32,7 +32,7 @@ export default function Navbar() {
 
         <div className="h-full px-3 py-4 overflow-y-auto">
           <Link to="/" className="flex items-center ps-2.5 mb-5">
-            <LazyLoadImage src={logo} className="w-full" alt="Logo" />
+            <img src={logo} className="w-full" alt="Logo" />
           </Link>
           <ul className="space-y-2 font-medium">
             <li>

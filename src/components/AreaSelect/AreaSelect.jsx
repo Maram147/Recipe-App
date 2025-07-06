@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Select from 'react-select';
 
 const countries = {
   'American': 'us',
@@ -33,29 +34,74 @@ const countries = {
   'Ukrainian': 'ua',
 };
 
-export default function AreaSelect({ onAreaChange }) {
-  const [selectedArea, setSelectedArea] = useState('All');
+const options = Object.keys(countries).map((area) => ({
+  value: area,
+  label: area,
+}));
 
-  const handleChange = (area) => {
-    setSelectedArea(area);
-    onAreaChange?.(area);
+const customStyles = {
+  menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+  control: (provided, state) => ({
+    ...provided,
+    borderColor: state.isFocused ? '#f29724' : '#ccc',
+    boxShadow: state.isFocused ? '0 0 0 2px rgba(242, 151, 36, 0.4)' : 'none',
+    '&:hover': {
+      borderColor: '#f29724',
+    },
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected
+      ? '#f29724'
+      : state.isFocused
+      ? '#fde7cc'
+      : 'white',
+    color: state.isSelected ? 'white' : '#333',
+    '&:hover': {
+      backgroundColor: '#fde7cc',
+    },
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: '#333',
+  }),
+  placeholder: (provided) => ({
+    ...provided,
+    color: '#aaa',
+  }),
+};
+
+export default function AreaSelect({ onAreaChange }) {
+  const [selectedArea, setSelectedArea] = useState(null); 
+
+  const handleChange = (selectedOption) => {
+    setSelectedArea(selectedOption);
+    if (!selectedOption) {
+      onAreaChange?.('All'); 
+    } else {
+      onAreaChange?.(selectedOption.value); 
+    }
   };
 
   return (
-    <div className="mt-4">
-      <label htmlFor="Area-select" className="sr-only">Select Area</label>
-      <select
-        id="Area-select"
+    <div className="mt-4 relative md:z-50 ">
+      <label htmlFor="area-select" className="block text-sm font-lg text-gray-700 mb-2">
+        Select Area
+      </label>
+
+      <Select
+        inputId="area-select"
+        options={options}
         value={selectedArea}
-        onChange={(e) => handleChange(e.target.value)}
-        className="border border-[#f29724] text-gray-900 text-sm rounded-lg
-                   focus:ring-[#f29724] hover:focus:ring-[#f29724] focus:border-[#f29724] block w-full p-2.5"
-      >
-        <option value="All">All Areas</option>
-        {Object.keys(countries).map((cat) => (
-          <option key={cat} value={cat}>{cat}</option>
-        ))}
-      </select>
+        onChange={handleChange}
+        isClearable
+        placeholder="Choose an area..."
+        className="text-sm"
+        styles={customStyles}
+        classNamePrefix="react-select"
+        // menuPosition="absolute"
+        menuPortalTarget={document.body}
+      />
     </div>
   );
 }
