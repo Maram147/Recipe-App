@@ -18,7 +18,7 @@
   width: 250px;
   text-align: center;
   background-color: #f8f5f0;
-  padding-top: 120px; // مساحة عشان الصورة تطلع منها
+  padding-top: 120px; 
   position: relative;
   margin-bottom: 80px;
   
@@ -111,7 +111,7 @@
   //   width: 300px;
   // }
   .mealdetails_toggle{
-    color: #f29724;
+    color: #b45309;
     font-weight: bold;
     &:hover {
       text-decoration: none;
@@ -124,7 +124,7 @@
   .mealdetails_subtitle {
     font-size: 24px;
     font-weight: 600;
-    color:#f29724 ;
+    color:#92400e ;
     margin: 5px 0;
   }
 }

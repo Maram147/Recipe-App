@@ -126,7 +126,7 @@ export default function Meals() {
 
             return (
               <div key={meal.idMeal} className="recipe-card group">
-                <LazyLoadImage 
+                <LazyLoadImage
                   className="recipe-card__image"
                   src={meal.strMealThumb || logo}
                   alt={meal.strMeal}
@@ -138,16 +138,21 @@ export default function Meals() {
                   <h3 className="recipe-card__title">{meal.strMeal.split(' ').slice(0, 2).join(' ')}</h3>
                   <p className="recipe-card__category " >{meal.strCategory || 'Uncategorized'}</p>
                   <p className="recipe-card__area">
-                    {flagCodeValue && (
-                      <LazyLoadImage
+                    {flagCodeValue?.length === 2 && (
+                      <img
                         src={`https://flagcdn.com/32x24/${flagCodeValue}.png`}
                         alt={`${meal.strArea} flag`}
+                        title={`${meal.strArea} flag`}
+                        width="32"
+                        height="24"
+                        loading="lazy"
                         className="inline-block w-6 h-4 mr-2"
                         onError={(e) => {
-                          e.target.src = logo;
+                          e.target.style.display = "none";
                         }}
                       />
                     )}
+
                     {meal.strArea || ''}
                   </p>
                   <Link to={`/mealdetails/${meal.idMeal}`} className="recipe-card__link">

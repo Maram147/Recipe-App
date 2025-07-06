@@ -98,16 +98,21 @@ export default function MealDetails() {
       
       <h1 className="mealdetails_title text-start">{meal.strMeal}</h1>
       <h6 className="mealdetails_subtitle text-black text-start">{meal.strCategory}</h6>
-      <h6 className="mealdetails_subtitle text-black text-start">{flagCodeValue && (
-        <LazyLoadImage
-          src={`https://flagcdn.com/32x24/${flagCodeValue}.png`}
-          alt={`${meal.strArea} flag`}
-          className="inline-block w-6 h-4 mr-2"
-          onError={(e) => {
-            e.target.src = logo;
-          }}
-        />
-      )}
+      <h6 className="mealdetails_subtitle text-black text-start">{flagCodeValue?.length === 2 && (
+  <img
+    src={`https://flagcdn.com/32x24/${flagCodeValue}.png`}
+    alt={`${meal.strArea} flag`}
+    title={`${meal.strArea} flag`}
+    width="32"
+    height="24"
+    loading="lazy"
+    className="inline-block w-6 h-4 mr-2"
+    onError={(e) => {
+      e.target.style.display = "none"; 
+    }}
+  />
+)}
+
         {meal.strArea || ''}</h6>
       <div className="flex flex-col lg:flex-row gap-6">
         {/* meal image */}
