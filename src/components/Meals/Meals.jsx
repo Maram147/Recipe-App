@@ -143,7 +143,6 @@ export default function Meals() {
                         src={`https://flagcdn.com/32x24/${flagCodeValue}.png`}
                         alt={`${meal.strArea} flag`}
                         className="inline-block w-6 h-4 mr-2"
-                        loading="lazy"
                         onError={(e) => {
                           e.target.src = logo;
                         }}

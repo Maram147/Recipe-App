@@ -11,7 +11,6 @@ import MealDetails from './components/MealDetails/MealDetails'
 import NotFound from './components/NotFound/NotFound'
 import { Offline, Online } from "react-detect-offline";
 import OfflinePage from './components/OfflinePage/OfflinePage'
-
 function App() {
   let router = createBrowserRouter([{
     path: '', element: <Layout />, children: [
