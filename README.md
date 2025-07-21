@@ -1,8 +1,40 @@
-# React + Vite
+# 🍽️ Recipe App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive recipe browsing application built with **React**, **Tailwind CSS**, and **SCSS**. Users can explore delicious recipes, view detailed cooking instructions, and search for meals by name or category.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔍 Search meals by name
+- 🧾 View detailed recipe instructions and ingredients
+- 🖼️ Meal images and categories
+- 🎨 Responsive UI using Tailwind CSS and SCSS
+- ⚡ Fast and lightweight with React & Axios
+- 📱 Mobile-friendly design
+
+## 🛠️ Tech Stack
+
+- **React** – Frontend framework
+- **Tailwind CSS** – Utility-first CSS framework
+- **SCSS** – For writing modular and maintainable styles
+- **Axios** – For API requests
+- **React Router** – For page navigation
+- **TheMealDB API** – Source for recipe data
+
+## 📸 Screenshots
+
+> *(Add a few screenshots of your app here, if available)*
+
+## 📦 Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Maram147/Recipe-app.git
+
+# Navigate to the project folder
+cd recipe-app
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
