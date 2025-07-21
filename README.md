@@ -19,10 +19,7 @@ A modern and responsive recipe browsing application built with **React**, **Tail
 - **Axios** – For API requests
 - **React Router** – For page navigation
 - **TheMealDB API** – Source for recipe data
-
-## 📸 Screenshots
-
-> *(Add a few screenshots of your app here, if available)*
+> 
 
 ## 📦 Installation
 
